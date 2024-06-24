@@ -17,7 +17,6 @@ from load_llff import load_llff_data
 from load_deepvoxels import load_dv_data
 from load_blender import load_blender_data
 from load_LINEMOD import load_LINEMOD_data
-from IPython.display import Video
 
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -671,7 +670,6 @@ def train():
             rgbs, _ = render_path(render_poses, hwf, K, args.chunk, render_kwargs_test, gt_imgs=images, savedir=testsavedir, render_factor=args.render_factor)
             print('Done rendering', testsavedir)
             imageio.mimwrite(os.path.join(testsavedir, 'video.mp4'), to8b(rgbs), fps=30, quality=8)
-            Video(os.path.join(testsavedir, 'video.mp4'), width=480, height=360)
 
             return
 
